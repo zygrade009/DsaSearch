@@ -19,7 +19,7 @@ body {
   background: #f8f4e5;
   padding: 50px 80px;
   border: 3px solid black;
-  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 3px black;
+  box-shadow: 15px 15px 1px #80eeff, 15px 15px 1px 3px black;
   /* overflow-y: ; */
   overflow-x: hidden;
   height: 55vh;
@@ -56,7 +56,7 @@ body {
 
 
 .link-text:hover {
-  border-bottom: 5px solid #ffa580;
+  border-bottom: 5px solid #80eeff;
 }
 
 button {
@@ -64,7 +64,7 @@ button {
   margin: 0 auto;
   line-height: 28pt;
   padding: 0 20px;
-  background: #ffa580;
+  background: #80eeff;
   letter-spacing: 2px;
   transition: 0.2s all ease-in-out;
   outline: none;
