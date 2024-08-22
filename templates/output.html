@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+
+<body>
+    <div class="search-result">
+        {% if combined_results|length == 0 %}
+            <p class="link-text">Sorry, we could not find anything.....</p>
+            <img class="sad_emoji" src="{% static 'images/sad_emoji.png' %}" alt="SORRY">
+        {% else %}
+            {% for link, doc_name in combined_results %}
+                <div class="container">
+                    <a class="link-text" href="{{ link }}">{{ forloop.counter }}. {{ doc_name }}</a>
+                    <br>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSearch</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="heading">CodeSearch🧑‍💻</div>
+        <div class="sub-heading bt">Search for your favourite coding problems from</div>
+    </header>
+
+    <div class="logo-container">
+        <div class="img1">
+            <img src="{% static 'images/lc.png' %}" alt="LeetCode Logo">
+        </div>
+        <div class="img2">
+            <img src="{% static 'images/cforce.png' %}" alt="Codeforces Logo">
+        </div>
+        <div class="img3">
+            <img src="{% static 'images/codechef.png' %}" alt="CodeChef Logo">
+        </div>
+    </div>
+
+    <div class="search-container">
+        <form id="search-form" action="{% url 'start_page' %}" method="post">
+            {% csrf_token %}
+            <input required type="text" id="query" name="Query" placeholder="Enter the keyword...">
+            <button type="submit" id="submit-button">Search</button>
+            <div id="loading-indicator">
+                <div class="spinner"></div>
+            </div>
+        </form>
+    </div>
+
+    <div class="platform-buttons ce">
+        <label class="platform-button">
+            <input type="checkbox" name="source" value="leetcode" checked>
+            <div class="bt">LeetCode</div>
+        </label>
+        <label class="platform-button">
+            <input type="checkbox" name="source" value="codeforces">
+            <div class="bt">CodeForces</div>
+        </label>
+        <label class="platform-button">
+            <input type="checkbox" name="source" value="codechef">
+            <div class="bt">CodeChef</div>
+        </label>
+    </div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function (event) {
+            var checkboxes = document.querySelectorAll('input[name="source"]:checked');
+            var sources = [];
+            checkboxes.forEach(function (checkbox) {
+                sources.push(checkbox.value);
+            });
+
+            var hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'sources';
+            hiddenInput.value = sources.join(',');
+            this.appendChild(hiddenInput);
+
+            var submitButton = document.getElementById("submit-button");
+            var loadingIndicator = document.getElementById("loading-indicator");
+
+            if (submitButton && loadingIndicator) {
+                loadingIndicator.style.display = "block";
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const loadingIndicator = document.getElementById("loading-indicator");
+            if (loadingIndicator) {
+                loadingIndicator.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>
